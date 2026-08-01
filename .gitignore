@@ -7,3 +7,6 @@ node_modules/
 # OS / editor
 .DS_Store
 Thumbs.db
+
+# Source logo mockup (not used at runtime)
+new logo.png

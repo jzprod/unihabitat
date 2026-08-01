@@ -81,10 +81,15 @@ pointant vers cette URL et placez-le sur la carte de visite physique.
 
 Toutes les coordonnées vivent dans **deux endroits** :
 
-- **`index.html`** — liens `tel:`, `mailto:`, `wa.me`, réseaux sociaux, textes.
+- **`index.html`** — liens `tel:`, `mailto:`, `wa.me`, réseaux sociaux, adresse, textes.
 - **`app.js`** — objet `BRAND` (utilisé pour la vCard `.vcf`).
 
-Modifiez les deux si un numéro/e-mail change.
+Modifiez les deux si un numéro / e-mail / adresse change.
+
+**Adresse :** 174 Bd Zerktouni & Moussa Bnou Noussair, 1ᵉʳ étage, Appt N° 2 — Casablanca.
+Les boutons *Localisation* et *Itinéraire* ouvrent Google Maps sur cette adresse.
+Le logo est un **SVG vectoriel** (`assets/logo.svg`) — net à toute taille ; les `.png`/`.webp`
+servent de repli.
 
 ---
 
@@ -94,6 +99,6 @@ Modifiez les deux si un numéro/e-mail change.
 - Cibles tactiles ≥ 44 px, focus clavier visibles, contrastes AA
 - `prefers-reduced-motion` respecté
 - Langue `fr`, SEO + Open Graph, favicon dérivé du logo
-- Logo utilisé tel quel (optimisé WebP/PNG, jamais recoloré ni déformé)
+- Logo skyline vectoriel (SVG) + repli WebP/PNG
 
 © 2026 UNIHABITAT

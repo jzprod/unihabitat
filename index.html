@@ -35,7 +35,7 @@
   <link rel="manifest" href="manifest.webmanifest" />
 
   <!-- Preload the logo (LCP) -->
-  <link rel="preload" as="image" href="assets/logo.webp" type="image/webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="assets/logo.svg" type="image/svg+xml" fetchpriority="high" />
 
   <!-- Fonts: preconnect + display swap for fast paint -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -58,6 +58,7 @@
     "areaServed": "Casablanca, Maroc",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "174 Bd Zerktouni & Moussa Bnou Noussair, 1er étage, Appt N° 2",
       "addressLocality": "Casablanca",
       "addressCountry": "MA"
     },
@@ -78,11 +79,12 @@
       <header class="card__header">
         <div class="logo-frame">
           <picture>
+            <source srcset="assets/logo.svg" type="image/svg+xml" />
             <source srcset="assets/logo.webp" type="image/webp" />
             <img
               src="assets/logo.png"
               alt="Logo UNIHABITAT — Agence immobilière multiservices"
-              width="200" height="200"
+              width="150" height="100"
               fetchpriority="high" decoding="async" />
           </picture>
         </div>
@@ -91,12 +93,19 @@
         <p class="brand-type">Agence immobilière multiservices</p>
         <p class="brand-tagline">Votre partenaire immobilier de confiance</p>
 
-        <p class="location">
+        <a class="location"
+           href="https://www.google.com/maps/search/?api=1&query=174%20Bd%20Zerktouni%2C%20Moussa%20Bnou%20Noussair%2C%20Casablanca%2C%20Maroc"
+           target="_blank" rel="noopener noreferrer">
           <svg class="location__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/>
           </svg>
           <span>Casablanca, Maroc</span>
-        </p>
+        </a>
+
+        <address class="address">
+          174 Bd Zerktouni &amp; Moussa Bnou Noussair,<br />
+          1<sup>er</sup> étage, Appt N° 2 — Casablanca
+        </address>
       </header>
 
       <!-- ================= PRIMARY ACTION ================= -->
@@ -135,7 +144,7 @@
           <span class="tile__label">E-mail</span>
         </a>
 
-        <a class="tile" href="https://www.google.com/maps/search/?api=1&query=Casablanca%2C%20Maroc"
+        <a class="tile" href="https://www.google.com/maps/search/?api=1&query=174%20Bd%20Zerktouni%2C%20Moussa%20Bnou%20Noussair%2C%20Casablanca%2C%20Maroc"
            target="_blank" rel="noopener noreferrer">
           <span class="tile__icon">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">

@@ -12,7 +12,8 @@
     phoneLocal: "06 65 18 63 97",
     email: "unihabitat.24@gmail.com",
     website: "https://unihabitat.ma/",
-    city: "Casablanca, Maroc"
+    city: "Casablanca, Maroc",
+    street: "174 Bd Zerktouni & Moussa Bnou Noussair, 1er étage, Appt N° 2"
   };
 
   /* -------- Toast -------- */
@@ -46,7 +47,7 @@
       "item1.X-ABLabel:WhatsApp",
       "EMAIL;TYPE=WORK,INTERNET:" + BRAND.email,
       "URL:" + BRAND.website,
-      "ADR;TYPE=WORK:;;;Casablanca;;;Maroc",
+      "ADR;TYPE=WORK:;;" + BRAND.street + ";Casablanca;;;Maroc",
       "NOTE:" + BRAND.role + " — Votre partenaire immobilier de confiance.",
       "END:VCARD"
     ];
