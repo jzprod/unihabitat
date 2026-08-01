@@ -1,0 +1,9 @@
+# QA screenshots (generated during visual testing)
+qa/
+
+# Dependencies (none needed at runtime)
+node_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db

@@ -1,0 +1,465 @@
+/* ============================================================
+   UNIHABITAT — Carte de visite digitale
+   Premium, mobile-first, accessible
+   ============================================================ */
+
+:root {
+  /* Brand palette */
+  --navy: #052D50;
+  --navy-deep: #021525;
+  --teal: #00A8B4;
+  --teal-light: #63E0DF;
+  --gold: #D6A32B;
+  --gold-soft: #F7D76F;
+  --white: #FFFFFF;
+  --neutral: #F6FAFB;
+
+  /* Semantic */
+  --ink: #0B2437;          /* primary text on light */
+  --ink-soft: #4A6274;     /* secondary text on light */
+  --line: #E4EDF1;         /* hairline borders */
+  --wa: #25D366;           /* WhatsApp green */
+  --wa-deep: #128C7E;
+
+  /* Surfaces */
+  --card-bg: #FFFFFF;
+
+  /* Rhythm */
+  --radius-lg: 26px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --pad: 22px;
+  --gap: 12px;
+  --tap: 52px; /* comfortably above 44px minimum */
+
+  --shadow-card: 0 24px 60px -24px rgba(2, 21, 37, .55), 0 2px 8px rgba(2, 21, 37, .06);
+  --shadow-soft: 0 8px 20px -12px rgba(2, 21, 37, .35);
+
+  --ease: cubic-bezier(.2, .7, .3, 1);
+
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--navy-deep);
+  /* Elegant branded backdrop for desktop; subtle on mobile */
+  background-image:
+    radial-gradient(120% 80% at 50% -10%, rgba(0, 168, 180, .22), transparent 55%),
+    radial-gradient(90% 60% at 100% 100%, rgba(214, 163, 43, .12), transparent 55%),
+    linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 100%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  color: var(--navy);
+  padding: 12px 18px;
+  border-radius: 0 0 12px 0;
+  font-weight: 700;
+}
+.skip-link:focus { left: 0; outline: 3px solid var(--gold); }
+
+/* ---------- Stage (centers the card) ---------- */
+.stage {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 48px);
+  padding-top: max(clamp(16px, 4vw, 48px), env(safe-area-inset-top));
+  padding-bottom: max(clamp(16px, 4vw, 48px), env(safe-area-inset-bottom));
+}
+
+/* ---------- Card ---------- */
+.card {
+  width: 100%;
+  max-width: 430px;
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: clamp(20px, 6vw, 30px);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+  animation: rise .6s var(--ease) both;
+}
+
+/* Gold hairline accent at top of card */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--teal), var(--gold-soft), var(--gold));
+}
+
+/* ---------- Header ---------- */
+.card__header {
+  text-align: center;
+  padding-top: 6px;
+}
+
+.logo-frame {
+  width: clamp(112px, 34vw, 138px);
+  aspect-ratio: 1;
+  margin: 0 auto 16px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  place-items: center;
+  padding: 12px;
+}
+.logo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 9vw, 2.6rem);
+  line-height: 1;
+  letter-spacing: .04em;
+  margin: 4px 0 0;
+  color: var(--navy);
+}
+
+.brand-type {
+  margin: 8px 0 0;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.brand-tagline {
+  margin: 10px auto 0;
+  max-width: 30ch;
+  font-size: .98rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.location {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 16px 0 4px;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  background: var(--neutral);
+  border-radius: 999px;
+  font-size: .86rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.location__icon {
+  width: 16px;
+  height: 16px;
+  fill: var(--teal);
+  flex: none;
+}
+
+/* ---------- Buttons (shared) ---------- */
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: var(--tap);
+  padding: 14px 18px;
+  border: 0;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .18s var(--ease), box-shadow .2s var(--ease), background-color .2s var(--ease);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn__icon { width: 26px; height: 26px; flex: none; }
+.btn__body { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; text-align: left; }
+.btn__label { font-weight: 800; letter-spacing: .01em; }
+.btn__sub { font-size: .78rem; font-weight: 600; opacity: .9; margin-top: 3px; }
+
+/* Primary — WhatsApp */
+.btn--whatsapp {
+  margin-top: 22px;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--wa) 0%, var(--wa-deep) 100%);
+  box-shadow: 0 14px 26px -12px rgba(18, 140, 126, .8);
+}
+.btn--whatsapp .btn__icon { fill: var(--white); }
+.btn--whatsapp:hover { transform: translateY(-2px); box-shadow: 0 18px 30px -12px rgba(18, 140, 126, .9); }
+.btn--whatsapp:active { transform: translateY(0); }
+
+/* Ghost — Share */
+.btn--ghost {
+  justify-content: center;
+  gap: 10px;
+  color: var(--navy);
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  box-shadow: none;
+}
+.btn--ghost .btn__icon { width: 20px; height: 20px; fill: var(--teal); }
+.btn--ghost:hover { border-color: var(--teal); background: var(--neutral); transform: translateY(-1px); }
+
+/* ---------- Quick action grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+  margin-top: 16px;
+}
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 84px;
+  padding: 12px 6px;
+  background: var(--neutral);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--navy);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: .8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .18s var(--ease), border-color .2s var(--ease), box-shadow .2s var(--ease), background-color .2s var(--ease);
+  -webkit-tap-highlight-color: transparent;
+}
+.tile__icon {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: linear-gradient(135deg, var(--navy), var(--teal));
+  box-shadow: var(--shadow-soft);
+}
+.tile__icon svg { width: 20px; height: 20px; fill: var(--white); }
+.tile__label { line-height: 1; }
+.tile:hover { transform: translateY(-2px); border-color: var(--teal); box-shadow: var(--shadow-soft); background: var(--white); }
+.tile:active { transform: translateY(0); }
+
+/* ---------- Services chips ---------- */
+.services { margin-top: 20px; }
+.chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.chip {
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: var(--navy);
+  background: rgba(0, 168, 180, .1);
+  border: 1px solid rgba(0, 168, 180, .28);
+  padding: 6px 13px;
+  border-radius: 999px;
+}
+
+/* ---------- Divider before links ---------- */
+.links {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.link-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: var(--tap);
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform .18s var(--ease), border-color .2s var(--ease), box-shadow .2s var(--ease);
+  -webkit-tap-highlight-color: transparent;
+}
+.link-row__icon {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+}
+.link-row__icon svg { width: 22px; height: 22px; fill: var(--white); }
+.link-row__icon--web { background: linear-gradient(135deg, var(--navy), var(--teal)); }
+.link-row__icon--ig  { background: linear-gradient(135deg, #7c3aed, #f43f7f 55%, #ffa14a); }
+.link-row__icon--fb  { background: linear-gradient(135deg, #1877F2, #0a58c2); }
+.link-row__text { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+.link-row__title { font-weight: 700; font-size: .95rem; }
+.link-row__meta { font-size: .8rem; color: var(--ink-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.link-row__chevron {
+  width: 18px; height: 18px; flex: none; margin-left: auto;
+  fill: none; stroke: var(--ink-soft); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round;
+  transition: transform .2s var(--ease);
+}
+.link-row:hover { transform: translateY(-1px); border-color: var(--teal); box-shadow: var(--shadow-soft); }
+.link-row:hover .link-row__chevron { transform: translateX(3px); stroke: var(--teal); }
+
+/* ---------- Share ---------- */
+.share-wrap { margin-top: 12px; }
+
+/* ---------- Trust values ---------- */
+.values {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.value {
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.value-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
+
+/* ---------- Footer ---------- */
+.foot {
+  margin-top: 20px;
+  text-align: center;
+}
+.foot p {
+  margin: 0;
+  font-size: .74rem;
+  letter-spacing: .04em;
+  color: var(--ink-soft);
+}
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  transform: translate(-50%, 24px);
+  z-index: 90;
+  max-width: calc(100vw - 32px);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 18px;
+  background: var(--navy-deep);
+  color: var(--white);
+  border-radius: 14px;
+  font-size: .9rem;
+  font-weight: 600;
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, .6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .28s var(--ease), transform .28s var(--ease);
+}
+.toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+.toast::before {
+  content: "";
+  width: 18px; height: 18px; flex: none;
+  background: var(--teal-light);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* ============================================================
+   Focus states (accessibility)
+   ============================================================ */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+.btn--whatsapp:focus-visible { outline-color: var(--gold-soft); }
+
+/* ============================================================
+   Responsive tuning
+   ============================================================ */
+
+/* Very small phones (≤ 340px) — keep grid readable */
+@media (max-width: 340px) {
+  :root { --gap: 9px; }
+  .tile { min-height: 78px; font-size: .74rem; padding: 10px 4px; }
+  .tile__icon { width: 34px; height: 34px; }
+  .brand-name { font-size: 1.9rem; }
+  .btn__sub { font-size: .72rem; }
+}
+
+/* Desktop / tablet — refine the framed card presentation */
+@media (min-width: 600px) {
+  .card { max-width: 440px; padding: 34px 32px 30px; }
+  .link-row:hover { box-shadow: var(--shadow-card); }
+}
+
+/* Wide desktop — a touch more presence for the card */
+@media (min-width: 1024px) {
+  body { background-attachment: fixed; }
+}
+
+/* ============================================================
+   Motion preferences
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  .card { animation: rise .6s var(--ease) both; }
+  .logo-frame { animation: fade .7s .1s var(--ease) both; }
+  .btn--whatsapp { animation: fade .6s .18s var(--ease) both; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

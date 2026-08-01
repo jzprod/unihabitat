@@ -1,0 +1,16 @@
+{
+  "name": "UNIHABITAT — Agence immobilière multiservices",
+  "short_name": "UNIHABITAT",
+  "description": "Votre partenaire immobilier de confiance à Casablanca.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#021525",
+  "theme_color": "#021525",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
