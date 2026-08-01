@@ -75,6 +75,10 @@
   <div class="stage">
     <main class="card" id="top">
 
+      <!-- Decorative background layer (ghost buildings), like the printed card -->
+      <div class="card-decor" aria-hidden="true"></div>
+      <span class="decor-dots" aria-hidden="true"></span>
+
       <!-- ================= HEADER ================= -->
       <header class="card__header">
         <div class="logo-frame">
@@ -100,11 +104,6 @@
           </svg>
           <span>Casablanca, Maroc</span>
         </a>
-
-        <address class="address">
-          174 Bd Zerktouni &amp; Moussa Bnou Noussair,<br />
-          1<sup>er</sup> étage, Appt N° 2 — Casablanca
-        </address>
       </header>
 
       <!-- ================= PRIMARY ACTION ================= -->
@@ -234,9 +233,20 @@
         <span class="value">Innovation</span>
       </section>
 
-      <!-- ================= FOOTER ================= -->
+      <!-- ================= FOOTER (navy bar, like the printed card) ================= -->
       <footer class="foot">
-        <p>© 2026 UNIHABITAT</p>
+        <a class="foot__addr"
+           href="https://www.google.com/maps/search/?api=1&query=174%20Boulevard%20Zerktouni%20et%20Moussa%20Bnou%20Noussair%2C%20Casablanca%2C%20Maroc"
+           target="_blank" rel="noopener noreferrer">
+          <svg class="foot__pin" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/>
+          </svg>
+          <span class="foot__addr-text">
+            174 Bd Zerktouni et Moussa Bnou Noussair<br />
+            1<sup>er</sup> étage, Appt N° 2 — Casablanca
+          </span>
+        </a>
+        <p class="foot__copy">© 2026 UNIHABITAT</p>
       </footer>
 
     </main>
