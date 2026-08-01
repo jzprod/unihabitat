@@ -119,16 +119,16 @@ body {
 }
 
 .logo-frame {
-  width: clamp(128px, 40vw, 150px);
-  aspect-ratio: 1;              /* rounded square plaque */
-  margin: 0 auto 16px;
+  width: clamp(230px, 74vw, 288px);
+  aspect-ratio: 851 / 542;      /* matches the full logo (skyline + wordmark) */
+  margin: 2px auto 14px;
   background: var(--white);
   border: 1px solid var(--line);
-  border-radius: 22px;
+  border-radius: 20px;
   box-shadow: var(--shadow-soft);
   display: grid;
   place-items: center;
-  padding: 18px 16px;
+  padding: 14px 18px;
 }
 .logo-frame img,
 .logo-frame picture {
