@@ -4,20 +4,21 @@
    ============================================================ */
 
 :root {
-  /* Brand palette — navy + warm orange on cream (from the printed card) */
-  --navy: #1F3251;         /* primary dark — headings, logo frame ink */
-  --navy-deep: #16263F;    /* deepest navy — footer curve, toast */
-  --orange: #E2653B;       /* single accent — CTAs, icons, focus */
-  --orange-bright: #EA6A3A;
-  --orange-soft: #F0946E;  /* lighter tint for glows */
-  --cream: #F4EFE6;        /* branded backdrop */
-  --cream-deep: #EBE3D5;   /* deeper cream for radial depth */
+  /* Brand palette — sampled directly from the logo (skyline orange + navy) */
+  --navy: #0B2036;         /* logo navy — primary dark, text */
+  --navy-deep: #071626;    /* deepest navy — backdrop, toast */
+  --orange: #FB5C1D;       /* logo orange — single accent, CTAs, icons */
+  --orange-bright: #FF7A3C;/* brighter tint (logo gradient top) */
+  --orange-deep: #E24405;  /* deeper tint (logo gradient base) */
+  --orange-soft: #FF9A63;  /* soft tint for glows/toast check */
+  --cream: #F5EFE7;        /* branded backdrop */
+  --cream-deep: #ECE4D8;   /* deeper cream for radial depth */
   --white: #FFFFFF;
-  --neutral: #FAF6EF;      /* subtle warm neutral for tiles/pills */
+  --neutral: #FBF6EF;      /* subtle warm neutral for tiles/pills */
 
   /* Semantic */
-  --ink: #1F3251;          /* primary text on light */
-  --ink-soft: #5A6a80;     /* secondary text on light */
+  --ink: #0B2036;          /* primary text on light */
+  --ink-soft: #566274;     /* secondary text on light */
   --line: #E7E0D3;         /* warm hairline borders */
   --wa: #25D366;           /* WhatsApp green (kept — brand recognition) */
   --wa-deep: #128C7E;
@@ -56,8 +57,8 @@ body {
   background: var(--cream);
   /* Elegant cream backdrop with a warm orange glow + navy depth, echoing the printed card */
   background-image:
-    radial-gradient(115% 75% at 50% -12%, rgba(226, 101, 59, .16), transparent 55%),
-    radial-gradient(90% 70% at 100% 108%, rgba(31, 50, 81, .16), transparent 55%),
+    radial-gradient(115% 75% at 50% -12%, rgba(251, 92, 29, .16), transparent 55%),
+    radial-gradient(90% 70% at 100% 108%, rgba(11, 32, 54, .18), transparent 55%),
     linear-gradient(165deg, var(--cream) 0%, var(--cream-deep) 100%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
@@ -102,13 +103,13 @@ body {
   animation: rise .6s var(--ease) both;
 }
 
-/* Brand accent bar at top of card — navy → orange, echoing the card's diagonal */
+/* Brand accent bar at top of card — logo orange gradient */
 .card::before {
   content: "";
   position: absolute;
   inset: 0 0 auto 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--navy) 0%, var(--navy) 45%, var(--orange) 100%);
+  background: linear-gradient(90deg, var(--orange-deep) 0%, var(--orange) 50%, var(--orange-bright) 100%);
 }
 
 /* ---------- Header ---------- */
@@ -118,16 +119,16 @@ body {
 }
 
 .logo-frame {
-  width: clamp(176px, 56vw, 208px);
-  aspect-ratio: 3 / 2;          /* landscape plaque to fit the wide skyline */
-  margin: 0 auto 18px;
+  width: clamp(128px, 40vw, 150px);
+  aspect-ratio: 1;              /* rounded square plaque */
+  margin: 0 auto 16px;
   background: var(--white);
   border: 1px solid var(--line);
-  border-radius: 20px;
+  border-radius: 22px;
   box-shadow: var(--shadow-soft);
   display: grid;
   place-items: center;
-  padding: 16px 22px;
+  padding: 18px 16px;
 }
 .logo-frame img,
 .logo-frame picture {
@@ -137,23 +138,25 @@ body {
   display: block;
 }
 
-.brand-name {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2rem, 9vw, 2.6rem);
-  line-height: 1;
-  letter-spacing: .04em;
-  margin: 4px 0 0;
-  color: var(--navy);
+/* Brand name kept for SEO/accessibility only — visually hidden (logo carries the name) */
+.brand-name-sr {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 .brand-type {
-  margin: 8px 0 0;
-  font-size: .82rem;
-  font-weight: 700;
-  letter-spacing: .14em;
+  margin: 14px 0 0;
+  font-size: .9rem;
+  font-weight: 800;
+  letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--orange);
+  color: var(--navy);
 }
 
 .brand-tagline {
@@ -221,15 +224,15 @@ body {
 .btn__label { font-weight: 800; letter-spacing: .01em; }
 .btn__sub { font-size: .78rem; font-weight: 600; opacity: .9; margin-top: 3px; }
 
-/* Primary — WhatsApp */
+/* Primary — WhatsApp (brand orange, matching the logo) */
 .btn--whatsapp {
   margin-top: 22px;
   color: var(--white);
-  background: linear-gradient(135deg, var(--wa) 0%, var(--wa-deep) 100%);
-  box-shadow: 0 14px 26px -12px rgba(18, 140, 126, .8);
+  background: linear-gradient(135deg, var(--orange-bright) 0%, var(--orange) 55%, var(--orange-deep) 100%);
+  box-shadow: 0 14px 26px -12px rgba(251, 92, 29, .7);
 }
 .btn--whatsapp .btn__icon { fill: var(--white); }
-.btn--whatsapp:hover { transform: translateY(-2px); box-shadow: 0 18px 30px -12px rgba(18, 140, 126, .9); }
+.btn--whatsapp:hover { transform: translateY(-2px); box-shadow: 0 18px 30px -12px rgba(251, 92, 29, .85); }
 .btn--whatsapp:active { transform: translateY(0); }
 
 /* Ghost — Share */
@@ -277,7 +280,7 @@ body {
   display: grid;
   place-items: center;
   border-radius: 11px;
-  background: linear-gradient(140deg, var(--navy) 0%, #2C446E 55%, var(--orange) 145%);
+  background: linear-gradient(140deg, var(--navy) 0%, #1C3A5C 52%, var(--orange) 150%);
   box-shadow: var(--shadow-soft);
 }
 .tile__icon svg { width: 20px; height: 20px; fill: var(--white); }
@@ -301,8 +304,8 @@ body {
   font-weight: 700;
   letter-spacing: .02em;
   color: var(--navy);
-  background: rgba(226, 101, 59, .1);
-  border: 1px solid rgba(226, 101, 59, .3);
+  background: rgba(251, 92, 29, .1);
+  border: 1px solid rgba(251, 92, 29, .32);
   padding: 6px 13px;
   border-radius: 999px;
 }
@@ -339,7 +342,7 @@ body {
   border-radius: 11px;
 }
 .link-row__icon svg { width: 22px; height: 22px; fill: var(--white); }
-.link-row__icon--web { background: linear-gradient(140deg, var(--navy) 0%, #2C446E 55%, var(--orange) 145%); }
+.link-row__icon--web { background: linear-gradient(140deg, var(--navy) 0%, #1C3A5C 52%, var(--orange) 150%); }
 .link-row__icon--ig  { background: linear-gradient(135deg, #7c3aed, #f43f7f 55%, #ffa14a); }
 .link-row__icon--fb  { background: linear-gradient(135deg, #1877F2, #0a58c2); }
 .link-row__text { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }

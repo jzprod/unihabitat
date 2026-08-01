@@ -10,3 +10,6 @@ Thumbs.db
 
 # Source logo mockup (not used at runtime)
 new logo.png
+
+# Source logo file (skyline extracted into assets/)
+/logo.png
